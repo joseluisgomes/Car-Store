@@ -1,6 +1,7 @@
 package com.example.stand.vehicle;
 
 import com.example.stand.Fuel;
+import com.example.stand.Motor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,11 +22,14 @@ public class Vehicle implements Cloneable {
     private Long id; // Primary key
     @Column(updatable = false)
     private String brand;
+    private String model;
     @Column(unique = true)
     private String registration;
     @Column(updatable = false)
     private int seats; // Number of seats
     private String color;
+
+    private Motor motor;
     private Fuel fuel;
     @Column(updatable = false)
     private LocalDate fabricDate; // Year of fabric
@@ -33,26 +37,32 @@ public class Vehicle implements Cloneable {
     // Build pattern for inheritance
     public abstract static class Builder<T extends Builder<T>> {
         // Required parameters
-        private String brand;
-        private String registration;
+        private String brand, registration;
         private int seats;
+        private Motor motor;
         private Fuel fuel;
 
         // Optional parameters
-        private String color;
+        private String color, model;
         private LocalDate fabricDate;
 
         public Builder(String brand,
                        String registration,
+                       String model,
                        int seats,
+                       Motor motor,
                        Fuel fuel) {
             this.brand = brand;
             this.registration = registration;
+            this.model = model;
             this.seats = seats;
+            this.motor = motor;
             this.fuel = fuel;
         }
 
         public Builder color(String val) { color = val; return this; }
+
+        public Builder model(String val) { model = val; return this; }
 
         public Builder fabricDate(LocalDate val) { fabricDate = val; return this; }
 
@@ -62,12 +72,14 @@ public class Vehicle implements Cloneable {
     public Vehicle() { }
 
     public Vehicle(Builder builder) {
-        brand = builder.brand;
-        registration = builder.registration;
-        seats = builder.seats;
-        color = builder.color;
-        fuel = builder.fuel;
-        fabricDate = builder.fabricDate;
+        this.brand = builder.brand;
+        this.model = builder.model;
+        this.registration = builder.registration;
+        this.seats = builder.seats;
+        this.color = builder.color;
+        this.motor = builder.motor;
+        this.fuel = builder.fuel;
+        this.fabricDate = builder.fabricDate;
     }
 
     public Long getId() {
@@ -88,6 +100,14 @@ public class Vehicle implements Cloneable {
 
     public String getColor() {
         return color;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Motor getMotor() {
+        return motor;
     }
 
     public Fuel getFuel() {
@@ -123,6 +143,7 @@ public class Vehicle implements Cloneable {
         return "Vehicle{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
                 ", registration='" + registration + '\'' +
                 ", seats=" + seats +
                 ", color='" + color + '\'' +
@@ -137,6 +158,7 @@ public class Vehicle implements Cloneable {
             final var vehicle = (Vehicle) super.clone();
             vehicle.id = this.id;
             vehicle.brand = this.brand;
+            vehicle.model = this.model;
             vehicle.registration = this.registration;
             vehicle.seats = this.seats;
             vehicle.color = this.color;
