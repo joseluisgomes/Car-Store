@@ -50,13 +50,11 @@ public class VehicleService {
 
     @Transactional
     public Vehicle updateVehicle(@NonNull String registration,
-                                 @NonNull String color,
-                                 @NonNull Fuel fuel) {
+                                 @NonNull String color) {
         log.info("Updating vehicle with registration {}", registration);
         final var vehicle = repository.findByRegistration(registration)
                 .orElseThrow(() -> new IllegalStateException(NOT_REGISTERED));
         vehicle.setColor(color);
-        vehicle.setFuel(fuel);
         return repository.save(vehicle.clone());
     }
 

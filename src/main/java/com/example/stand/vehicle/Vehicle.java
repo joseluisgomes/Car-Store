@@ -122,10 +122,6 @@ public class Vehicle implements Cloneable {
         this.color = color;
     }
 
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o)
