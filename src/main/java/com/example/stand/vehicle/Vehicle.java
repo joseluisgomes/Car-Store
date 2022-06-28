@@ -1,7 +1,7 @@
 package com.example.stand.vehicle;
 
-import com.example.stand.Fuel;
-import com.example.stand.Motor;
+import com.example.stand.vehicle.engine.Fuel;
+import com.example.stand.vehicle.engine.Motor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,15 +10,7 @@ import java.time.LocalDate;
 @Table(name = "Vehicles")
 public class Vehicle implements Cloneable {
     @Id
-    @SequenceGenerator(
-            name = "vehicle_id_generator",
-            sequenceName = "vehicle_id_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "vehicle_id_generator"
-    )
+    @Column(unique = true, updatable = false)
     private Long id; // Primary key
     @Column(updatable = false)
     private String brand;
@@ -28,7 +20,6 @@ public class Vehicle implements Cloneable {
     @Column(updatable = false)
     private int seats; // Number of seats
     private String color;
-
     private Motor motor;
     private Fuel fuel;
     @Column(updatable = false)
@@ -37,24 +28,26 @@ public class Vehicle implements Cloneable {
     // Build pattern for inheritance
     public abstract static class Builder<T extends Builder<T>> {
         // Required parameters
-        private String brand, registration;
-        private int seats;
-        private Motor motor;
-        private Fuel fuel;
+        private final Long id;
+        private final String brand;
+        private final String registration;
+        private final int seats;
+        private final Motor motor;
+        private final Fuel fuel;
 
         // Optional parameters
         private String color, model;
         private LocalDate fabricDate;
 
-        public Builder(String brand,
+        public Builder(Long id,
+                       String brand,
                        String registration,
-                       String model,
                        int seats,
                        Motor motor,
                        Fuel fuel) {
+            this.id = id;
             this.brand = brand;
             this.registration = registration;
-            this.model = model;
             this.seats = seats;
             this.motor = motor;
             this.fuel = fuel;
@@ -72,6 +65,7 @@ public class Vehicle implements Cloneable {
     public Vehicle() { }
 
     public Vehicle(Builder builder) {
+        this.id = builder.id;
         this.brand = builder.brand;
         this.model = builder.model;
         this.registration = builder.registration;

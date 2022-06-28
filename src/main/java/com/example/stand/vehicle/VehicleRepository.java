@@ -1,7 +1,7 @@
 package com.example.stand.vehicle;
 
-import com.example.stand.Fuel;
-import com.example.stand.Motor;
+import com.example.stand.vehicle.engine.Fuel;
+import com.example.stand.vehicle.engine.Motor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.lang.NonNull;

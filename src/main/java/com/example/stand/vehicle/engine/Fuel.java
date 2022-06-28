@@ -1,8 +1,8 @@
-package com.example.stand;
+package com.example.stand.vehicle.engine;
 
 public enum Fuel {
     GASOLINE("Gasoline"), DIESEL("Diesel"),
-    GAS("GAS"), ELECTRIC("Electric");
+    GAS("Gas"), ELECTRIC("Electric");
 
     private final String fuel;
 

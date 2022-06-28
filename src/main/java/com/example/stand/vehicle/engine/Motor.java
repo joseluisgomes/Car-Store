@@ -1,9 +1,9 @@
-package com.example.stand;
+package com.example.stand.vehicle.engine;
 
 public enum Motor {
-    CAR("CAR"), JEEP("JEEP"),
-    VAN("VAN"), MOTORCYCLE("MOTORCYCLE"),
-    CAMPER_VAN("CAMPER_VAN");
+    CAR("Car"), JEEP("Jeep"),
+    VAN("Van"), MOTORCYCLE("Motorcycle"),
+    CAMPER_VAN("Camper Van");
 
     private final String motor;
 

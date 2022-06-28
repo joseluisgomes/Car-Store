@@ -1,7 +1,7 @@
 package com.example.stand.vehicle;
 
-import com.example.stand.Fuel;
-import com.example.stand.Motor;
+import com.example.stand.vehicle.engine.Fuel;
+import com.example.stand.vehicle.engine.Motor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +28,17 @@ public class VehicleService {
     }
 
     public List<Vehicle> findVehiclesByBrandAndModel(String brand, String model) {
-        log.info("Fetching vehicles of {}, whose model is {}", brand, model);
+        log.info("Fetching vehicles of {}, whose model are {}", brand, model);
         return repository.findByBrandAndModel(brand, model);
     }
 
     public List<Vehicle> findVehiclesByMotor(Motor motor) {
-        log.info("Fetching vehicles which motor type is: {}", motor.getMotor());
+        log.info("Fetching vehicles whose motor type are: {}", motor.getMotor());
         return repository.findByMotor(motor);
     }
 
     public List<Vehicle> findVehiclesByFuel(Fuel fuel) {
-        log.info("Fetching vehicles which fuel type is: {}", fuel.getFuel());
+        log.info("Fetching vehicles whose fuel type are: {}", fuel.getFuel());
         return repository.findByFuel(fuel);
     }
 
@@ -63,6 +63,6 @@ public class VehicleService {
         log.info("Removing vehicle with registration {} from the database", registration);
         final var vehicle = findVehicleByRegistration(registration);
         repository.delete(vehicle);
-        return vehicle;
+        return vehicle.clone();
     }
 }
