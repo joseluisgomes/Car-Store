@@ -21,25 +21,25 @@ public class VehicleService {
         this.repository = repository;
     }
 
-    public Vehicle findVehicleByRegistration(String registration) {
+    public Vehicle getVehicleByRegistration(String registration) {
         log.info("Fetching vehicle with registration {}", registration);
-        return repository.findByRegistration(registration)
+        return repository.getByRegistration(registration)
                 .orElseThrow(() -> new IllegalStateException(NOT_REGISTERED));
     }
 
-    public List<Vehicle> findVehiclesByBrandAndModel(String brand, String model) {
+    public List<Vehicle> getVehiclesByBrandAndModel(String brand, String model) {
         log.info("Fetching vehicles of {}, whose model are {}", brand, model);
-        return repository.findByBrandAndModel(brand, model);
+        return repository.getByBrandAndModel(brand, model);
     }
 
-    public List<Vehicle> findVehiclesByMotor(Motor motor) {
+    public List<Vehicle> getVehiclesByMotor(Motor motor) {
         log.info("Fetching vehicles whose motor type are: {}", motor.getMotor());
-        return repository.findByMotor(motor);
+        return repository.getByMotor(motor);
     }
 
-    public List<Vehicle> findVehiclesByFuel(Fuel fuel) {
+    public List<Vehicle> getVehiclesByFuel(Fuel fuel) {
         log.info("Fetching vehicles whose fuel type are: {}", fuel.getFuel());
-        return repository.findByFuel(fuel);
+        return repository.getByFuel(fuel);
     }
 
     @Transactional
@@ -52,7 +52,7 @@ public class VehicleService {
     public Vehicle updateVehicle(@NonNull String registration,
                                  @NonNull String color) {
         log.info("Updating vehicle with registration {}", registration);
-        final var vehicle = repository.findByRegistration(registration)
+        final var vehicle = repository.getByRegistration(registration)
                 .orElseThrow(() -> new IllegalStateException(NOT_REGISTERED));
         vehicle.setColor(color);
         return repository.save(vehicle.clone());
@@ -61,7 +61,7 @@ public class VehicleService {
     @Transactional
     public Vehicle removeVehicle(@NonNull String registration) {
         log.info("Removing vehicle with registration {} from the database", registration);
-        final var vehicle = findVehicleByRegistration(registration);
+        final var vehicle = getVehicleByRegistration(registration);
         repository.delete(vehicle);
         return vehicle.clone();
     }

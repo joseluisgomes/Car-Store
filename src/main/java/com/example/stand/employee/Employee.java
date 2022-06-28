@@ -1,23 +1,25 @@
 package com.example.stand.employee;
 
+import com.example.stand.employee.office.Role;
 import com.example.stand.vehicle.Vehicle;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity(name = "Employee")
 @Table(name = "Employees")
+@Getter
 public class Employee {
     @Id
     @Column(unique = true, updatable = false)
-    private Long id;
+    private Long id; // Primary key
     private String name;
     @Column(unique = true, updatable = false)
     private String email;
-    private String jobTitle;
+    private Role role;
     @Column(unique = true, updatable = false)
     private String phone;
     private String imageUrl;
@@ -31,7 +33,7 @@ public class Employee {
         private final String phone;
 
         // Optional parameters
-        private String jobTitle;
+        private Role role;
         private String imageUrl;
 
         public Builder(Long id,
@@ -44,7 +46,7 @@ public class Employee {
             this.phone = phone;
         }
 
-        public Builder jobTitle(String val) { jobTitle = val; return this;}
+        public Builder role(Role val) { role = val; return this;}
         public Builder imageUrl(String val) { imageUrl = val; return this;}
     }
 
@@ -54,41 +56,17 @@ public class Employee {
         this.id = builder.id;
         this.name = builder.name;
         this.email = builder.email;
-        this.jobTitle = builder.jobTitle;
+        this.role = builder.role;
         this.phone = builder.phone;
         this.imageUrl = builder.imageUrl;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -115,7 +93,7 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
+                ", role='" + role + '\'' +
                 ", phone='" + phone + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 '}';
@@ -128,7 +106,7 @@ public class Employee {
            employee.id = this.id;
            employee.name = this.name;
            employee.email = this.email;
-           employee.jobTitle = this.jobTitle;
+           employee.role = this.role;
            employee.phone = this.phone;
            employee.imageUrl = this.imageUrl;
            return employee;

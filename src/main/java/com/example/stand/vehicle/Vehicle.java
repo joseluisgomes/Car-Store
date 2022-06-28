@@ -2,12 +2,14 @@ package com.example.stand.vehicle;
 
 import com.example.stand.vehicle.engine.Fuel;
 import com.example.stand.vehicle.engine.Motor;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity(name = "Vehicle")
 @Table(name = "Vehicles")
+@Getter
 public class Vehicle implements Cloneable {
     @Id
     @Column(unique = true, updatable = false)
@@ -74,42 +76,6 @@ public class Vehicle implements Cloneable {
         this.motor = builder.motor;
         this.fuel = builder.fuel;
         this.fabricDate = builder.fabricDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getRegistration() {
-        return registration;
-    }
-
-    public int getSeats() {
-        return seats;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public Motor getMotor() {
-        return motor;
-    }
-
-    public Fuel getFuel() {
-        return fuel;
-    }
-
-    public LocalDate getFabricDate() {
-        return fabricDate;
     }
 
     public void setColor(String color) {

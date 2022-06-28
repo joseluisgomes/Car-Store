@@ -21,17 +21,17 @@ public class VehicleController {
         this.service = service;
     }
 
-    @GetMapping(path = "/find/{registration}")
-    public ResponseEntity<Vehicle> findVehicleByRegistration(@PathVariable String registration) {
-        final var vehicle = service.findVehicleByRegistration(registration);
+    @GetMapping(path = "/get/{registration}")
+    public ResponseEntity<Vehicle> getVehicleByRegistration(@PathVariable String registration) {
+        final var vehicle = service.getVehicleByRegistration(registration);
         return ResponseEntity.ok(vehicle);
     }
 
     @GetMapping(path = "/brand/{brand}/{model}/{limit}")
-    public ResponseEntity<List<Vehicle>> findVehiclesByBrandAndModel(@PathVariable long limit,
-                                                                     @PathVariable String brand,
-                                                                     @PathVariable String model) {
-        final var vehicles = service.findVehiclesByBrandAndModel(brand, model)
+    public ResponseEntity<List<Vehicle>> getVehiclesByBrandAndModel(@PathVariable long limit,
+                                                                    @PathVariable String brand,
+                                                                    @PathVariable String model) {
+        final var vehicles = service.getVehiclesByBrandAndModel(brand, model)
                 .stream()
                 .limit(limit)
                 .toList();
@@ -39,9 +39,9 @@ public class VehicleController {
     }
 
     @GetMapping(path = "/motor/{motor}/{limit}")
-    public ResponseEntity<List<Vehicle>> findVehiclesByMotor(@PathVariable String motor,
-                                                             @PathVariable long limit) {
-        final var vehicles = service.findVehiclesByMotor(Motor.valueOf(motor))
+    public ResponseEntity<List<Vehicle>> getVehiclesByMotor(@PathVariable String motor,
+                                                            @PathVariable long limit) {
+        final var vehicles = service.getVehiclesByMotor(Motor.valueOf(motor))
                 .stream()
                 .limit(limit)
                 .toList();
@@ -49,9 +49,9 @@ public class VehicleController {
     }
 
     @GetMapping(path = "/fuel/{fuel}/{limit}")
-    public ResponseEntity<List<Vehicle>> findVehiclesByFuel(@PathVariable String fuel,
-                                                            @PathVariable long limit) {
-        final var vehicles = service.findVehiclesByFuel(Fuel.valueOf(fuel))
+    public ResponseEntity<List<Vehicle>> getVehiclesByFuel(@PathVariable String fuel,
+                                                           @PathVariable long limit) {
+        final var vehicles = service.getVehiclesByFuel(Fuel.valueOf(fuel))
                 .stream()
                 .limit(limit)
                 .toList();
