@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity(name = "Employee")
 @Table(name = "Employees")
 @Getter
-public class Employee {
+public class Employee implements Cloneable {
     @Id
     @Column(unique = true, updatable = false)
     private Long id; // Primary key
@@ -101,15 +101,17 @@ public class Employee {
 
     @Override
     public Employee clone() {
-       try {
-           final var employee = (Employee) super.clone();
-           employee.id = this.id;
-           employee.name = this.name;
-           employee.email = this.email;
-           employee.role = this.role;
-           employee.phone = this.phone;
-           employee.imageUrl = this.imageUrl;
-           return employee;
-       } catch (CloneNotSupportedException e) { throw new RuntimeException(e); }
+        try {
+            final var clone = (Employee) super.clone();
+            clone.id = id;
+            clone.name = name;
+            clone.email = email;
+            clone.role = role;
+            clone.phone = phone;
+            clone.imageUrl = imageUrl;
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

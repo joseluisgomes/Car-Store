@@ -112,14 +112,14 @@ public class Vehicle implements Cloneable {
     public Vehicle clone() {
         try {
             final var vehicle = (Vehicle) super.clone();
-            vehicle.id = this.id;
-            vehicle.brand = this.brand;
-            vehicle.model = this.model;
-            vehicle.registration = this.registration;
-            vehicle.seats = this.seats;
-            vehicle.color = this.color;
-            vehicle.fuel = this.fuel;
-            vehicle.fabricDate = this.fabricDate;
+            vehicle.id = id;
+            vehicle.brand = brand;
+            vehicle.model = model;
+            vehicle.registration = registration;
+            vehicle.seats = seats;
+            vehicle.color = color;
+            vehicle.fuel = fuel;
+            vehicle.fabricDate = fabricDate;
             return vehicle;
         } catch (CloneNotSupportedException e) { throw new AssertionError(); }
     }

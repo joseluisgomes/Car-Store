@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,13 +17,17 @@ public class EmployeeService {
         this.repository = repository;
     }
 
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees(long limit) {
         log.info("Fetching all employees");
-        return repository.findAll();
+        final List<Employee> employees = new ArrayList<>((int) limit);
+        repository.findAll().forEach(employee -> employees.add(employee.clone()));
+        return employees;
     }
 
-    public Employee getEmployeeById(Long id) {
+    public Employee getEmployeeById(long id) {
         log.info("Fetching employee whose id is {}", id);
-        return repository.getReferenceById(id).clone();
+        return repository.findById(id)
+                .orElseThrow()
+                .clone();
     }
 }

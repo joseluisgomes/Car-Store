@@ -27,20 +27,18 @@ public class EmployeeController {
 
     @GetMapping(path = "/list/{limit}")
     public ResponseEntity<List<Employee>> getAllEmployees(@PathVariable long limit) {
-        final var employees = service.getAllEmployees().stream()
-                .limit(limit)
-                .toList();
+        final var employees = service.getAllEmployees(limit);
         return ResponseEntity.ok(employees);
     }
 
-    @GetMapping(path = "get/{id}")
+    @GetMapping(path = "/get/{id}")
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable long id) {
         return ResponseEntity.ok(service.getEmployeeById(id));
     }
 
 
-    @GetMapping(path = "pic/{id}") // Get profile pic
+    @GetMapping(path = "/pic/{id}") // Get profile pic
     public ResponseEntity<FileSystemResource> getEmployeeProfilePic(@PathVariable long id) throws IOException {
         final var inputFile = service.getEmployeeById(id).getImageUrl();
         final var path = new File(inputFile).toPath();
