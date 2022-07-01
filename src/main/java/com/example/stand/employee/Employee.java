@@ -1,7 +1,6 @@
 package com.example.stand.employee;
 
 import com.example.stand.employee.office.Role;
-import com.example.stand.vehicle.Vehicle;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -25,7 +24,7 @@ public class Employee implements Cloneable {
     private String imageUrl;
 
     // Build pattern for inheritance
-    public abstract static class Builder<T extends Vehicle.Builder<T>> {
+    public abstract static class Builder<T extends Builder<T>> {
         // Required parameters
         private final Long id;
         private final String name;

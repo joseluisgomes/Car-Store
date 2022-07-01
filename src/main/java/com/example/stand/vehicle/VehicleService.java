@@ -21,6 +21,13 @@ public class VehicleService {
         this.repository = repository;
     }
 
+    public List<Vehicle> getAllVehicles(long limit) {
+        log.info("Fetching {} vehicles", limit);
+        return repository.findAll().stream()
+                .limit(limit)
+                .toList();
+    }
+
     public Vehicle getVehicleByRegistration(String registration) {
         log.info("Fetching vehicle with registration {}", registration);
         return repository.getByRegistration(registration)

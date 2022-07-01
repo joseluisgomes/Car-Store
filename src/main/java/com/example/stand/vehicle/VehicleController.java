@@ -21,6 +21,11 @@ public class VehicleController {
         this.service = service;
     }
 
+    @GetMapping(path = "/list/{limit}")
+    public ResponseEntity<List<Vehicle>> getAllVehicles(@PathVariable long limit) {
+        return ResponseEntity.ok(service.getAllVehicles(limit));
+    }
+
     @GetMapping(path = "/get/{registration}")
     public ResponseEntity<Vehicle> getVehicleByRegistration(@PathVariable String registration) {
         final var vehicle = service.getVehicleByRegistration(registration);

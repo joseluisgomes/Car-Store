@@ -19,9 +19,11 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployees(long limit) {
         log.info("Fetching all employees");
-        final List<Employee> employees = new ArrayList<>((int) limit);
+        final List<Employee> employees = new ArrayList<>();
         repository.findAll().forEach(employee -> employees.add(employee.clone()));
-        return employees;
+        return employees.stream()
+                .limit(limit)
+                .toList();
     }
 
     public Employee getEmployeeById(long id) {
