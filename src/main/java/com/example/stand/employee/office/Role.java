@@ -1,8 +1,8 @@
 package com.example.stand.employee.office;
 
 public enum Role {
-    SECRETARY("ROLE_SECRETARY"),
-    ADMINISTRATOR("ROLE_ADMIN");
+    SECRETARY("SECRETARY"),
+    ADMINISTRATOR("ADMINISTRATOR");
 
     private final String role;
 
