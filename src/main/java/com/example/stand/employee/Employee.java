@@ -24,7 +24,7 @@ public class Employee implements Cloneable {
     private String imageUrl;
 
     // Build pattern for inheritance
-    public abstract static class Builder<T extends Builder<T>> {
+    public static class Builder {
         // Required parameters
         private final Long id;
         private final String name;
