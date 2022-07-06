@@ -72,4 +72,8 @@ public class VehicleService {
         repository.delete(vehicle);
         return vehicle.clone();
     }
+
+    public VehicleRepository getRepository() {
+        return repository;
+    }
 }
