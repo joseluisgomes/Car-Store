@@ -13,18 +13,18 @@ import java.util.List;
 @Service
 @Slf4j
 public class VehicleService {
-    private static final String NOT_REGISTERED = "Registration not registered";
     private final VehicleRepository repository;
+    private static final String NOT_REGISTERED = "Registration not registered";
 
     @Autowired
     public VehicleService(VehicleRepository repository) {
         this.repository = repository;
     }
 
-    public List<Vehicle> getAllVehicles(long limit) {
+    public List<Vehicle> getAllVehicles(String limit) {
         log.info("Fetching {} vehicles", limit);
         return repository.findAll().stream()
-                .limit(limit)
+                .limit(getVehicles(limit))
                 .toList();
     }
 
@@ -34,19 +34,27 @@ public class VehicleService {
                 .orElseThrow(() -> new IllegalStateException(NOT_REGISTERED));
     }
 
-    public List<Vehicle> getVehiclesByBrandAndModel(String brand, String model) {
+    public List<Vehicle> getVehiclesByBrandAndModel(String brand,
+                                                    String model,
+                                                    String limit) {
         log.info("Fetching vehicles of {}, whose model are {}", brand, model);
-        return repository.getByBrandAndModel(brand, model);
+        return repository.getByBrandAndModel(brand, model).stream()
+                .limit(getVehicles(limit))
+                .toList();
     }
 
-    public List<Vehicle> getVehiclesByMotor(Motor motor) {
+    public List<Vehicle> getVehiclesByMotor(Motor motor, String limit) {
         log.info("Fetching vehicles whose motor type are: {}", motor.getMotor());
-        return repository.getByMotor(motor);
+        return repository.getByMotor(motor).stream()
+                .limit(getVehicles(limit))
+                .toList();
     }
 
-    public List<Vehicle> getVehiclesByFuel(Fuel fuel) {
+    public List<Vehicle> getVehiclesByFuel(Fuel fuel, String limit) {
         log.info("Fetching vehicles whose fuel type are: {}", fuel.getFuel());
-        return repository.getByFuel(fuel);
+        return repository.getByFuel(fuel).stream()
+                .limit(getVehicles(limit))
+                .toList();
     }
 
     @Transactional
@@ -75,5 +83,9 @@ public class VehicleService {
 
     public VehicleRepository getRepository() {
         return repository;
+    }
+
+    private long getVehicles(String limit) {
+        return Long.parseLong(limit);
     }
 }

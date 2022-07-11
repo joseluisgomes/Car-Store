@@ -16,68 +16,61 @@ import static org.springframework.http.HttpStatus.CREATED;
 public class VehicleController {
     private final VehicleService service;
 
+    // Default vehicle's settings
+    private static final String VEHICLE_REGISTRATION = "JN1AY1AP5BM181741";
+    private static final String VEHICLE_NUM = "10"; // Number of vehicles to be listed
+
     @Autowired
     public VehicleController(VehicleService service) {
         this.service = service;
     }
 
-    @GetMapping(path = "/list/{limit}")
-    public ResponseEntity<List<Vehicle>> getAllVehicles(@PathVariable long limit) {
+    @GetMapping(path = "/list")
+    public ResponseEntity<List<Vehicle>> getAllVehicles(@RequestParam(defaultValue = VEHICLE_NUM) String limit) {
         return ResponseEntity.ok(service.getAllVehicles(limit));
     }
 
-    @GetMapping(path = "/get/{registration}")
-    public ResponseEntity<Vehicle> getVehicleByRegistration(@PathVariable String registration) {
+    @GetMapping(path = "/get")
+    public ResponseEntity<Vehicle> getVehicleByRegistration(@RequestParam(defaultValue = VEHICLE_REGISTRATION) String registration) {
         final var vehicle = service.getVehicleByRegistration(registration);
         return ResponseEntity.ok(vehicle);
     }
 
-    @GetMapping(path = "/brand/{brand}/{model}/{limit}")
-    public ResponseEntity<List<Vehicle>> getVehiclesByBrandAndModel(@PathVariable long limit,
-                                                                    @PathVariable String brand,
-                                                                    @PathVariable String model) {
-        final var vehicles = service.getVehiclesByBrandAndModel(brand, model)
-                .stream()
-                .limit(limit)
-                .toList();
+    @GetMapping(path = "/brand/list")
+    public ResponseEntity<List<Vehicle>> getVehiclesByBrandAndModel(@RequestParam(defaultValue = "Nissan") String brand,
+                                                                    @RequestParam(defaultValue = "Juke") String model,
+                                                                    @RequestParam(defaultValue = VEHICLE_NUM) String limit) {
+        final var vehicles = service.getVehiclesByBrandAndModel(brand, model, limit);
         return ResponseEntity.ok(vehicles);
     }
 
-    @GetMapping(path = "/motor/{motor}/{limit}")
-    public ResponseEntity<List<Vehicle>> getVehiclesByMotor(@PathVariable String motor,
-                                                            @PathVariable long limit) {
-        final var vehicles = service.getVehiclesByMotor(Motor.valueOf(motor))
-                .stream()
-                .limit(limit)
-                .toList();
+    @GetMapping(path = "/motor/list")
+    public ResponseEntity<List<Vehicle>> getVehiclesByMotor(@RequestParam(defaultValue = "CAR") String motor,
+                                                            @RequestParam(defaultValue = VEHICLE_NUM) String limit) {
+        final var vehicles = service.getVehiclesByMotor(Motor.valueOf(motor), limit);
         return ResponseEntity.ok(vehicles);
     }
 
-    @GetMapping(path = "/fuel/{fuel}/{limit}")
-    public ResponseEntity<List<Vehicle>> getVehiclesByFuel(@PathVariable String fuel,
-                                                           @PathVariable long limit) {
-        final var vehicles = service.getVehiclesByFuel(Fuel.valueOf(fuel))
-                .stream()
-                .limit(limit)
-                .toList();
+    @GetMapping(path = "/fuel/list")
+    public ResponseEntity<List<Vehicle>> getVehiclesByFuel(@RequestParam(defaultValue = "Gasoline") String fuel,
+                                                           @RequestParam(defaultValue = VEHICLE_NUM) String limit) {
+        final var vehicles = service.getVehiclesByFuel(Fuel.valueOf(fuel), limit);
         return ResponseEntity.ok(vehicles);
     }
 
     @PostMapping(path = "/register")
     public ResponseEntity<Vehicle> registerNewVehicle(@RequestBody Vehicle vehicle) {
-        return ResponseEntity.status(CREATED)
-                .body(service.registerNewVehicle(vehicle));
+        return ResponseEntity.status(CREATED).body(service.registerNewVehicle(vehicle));
     }
 
-    @PutMapping(path = "/update/{registration}/{color}")
-    public ResponseEntity<Vehicle> updateVehicle(@PathVariable String registration,
-                                                 @PathVariable String color) {
-        return ResponseEntity.status(ACCEPTED)
-                .body(service.updateVehicle(registration, color));
+    @PutMapping(path = "/update")
+    public ResponseEntity<Vehicle> updateVehicle(@RequestParam(defaultValue = VEHICLE_REGISTRATION) String registration,
+                                                 @RequestParam(defaultValue = "Black") String color) {
+        return ResponseEntity.status(ACCEPTED).body(service.updateVehicle(registration, color));
     }
 
-    @DeleteMapping(path = "/delete/{registration}")
-    public ResponseEntity<Vehicle> removeVehicle(@PathVariable String registration) {
+    @DeleteMapping(path = "/delete")
+    public ResponseEntity<Vehicle> removeVehicle(@RequestParam(defaultValue = VEHICLE_REGISTRATION) String registration) {
         return ResponseEntity.ok(service.removeVehicle(registration));
     }
 }
