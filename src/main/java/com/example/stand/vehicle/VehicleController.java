@@ -18,7 +18,7 @@ public class VehicleController {
 
     // Default vehicle's settings
     private static final String VEHICLE_REGISTRATION = "JN1AY1AP5BM181741";
-    private static final String VEHICLE_NUM = "10"; // Number of vehicles to be listed
+    private static final String VEHICLE_NUM = "10"; // Total vehicles
 
     @Autowired
     public VehicleController(VehicleService service) {
