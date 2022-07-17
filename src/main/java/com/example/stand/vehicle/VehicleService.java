@@ -43,16 +43,16 @@ public class VehicleService {
                 .toList();
     }
 
-    public List<Vehicle> getVehiclesByMotor(Motor motor, String limit) {
-        log.info("Fetching vehicles whose motor type are: {}", motor.getMotor());
-        return repository.getByMotor(motor).stream()
+    public List<Vehicle> getVehiclesByMotor(String motor, String limit) {
+        log.info("Fetching vehicles whose motor type are: {}", motor);
+        return repository.getByMotor(Motor.valueOf(motor)).stream()
                 .limit(getVehicles(limit))
                 .toList();
     }
 
-    public List<Vehicle> getVehiclesByFuel(Fuel fuel, String limit) {
-        log.info("Fetching vehicles whose fuel type are: {}", fuel.getFuel());
-        return repository.getByFuel(fuel).stream()
+    public List<Vehicle> getVehiclesByFuel(String fuel, String limit) {
+        log.info("Fetching vehicles whose fuel type are: {}", fuel);
+        return repository.getByFuel(Fuel.valueOf(fuel)).stream()
                 .limit(getVehicles(limit))
                 .toList();
     }

@@ -1,7 +1,5 @@
 package com.example.stand.vehicle;
 
-import com.example.stand.vehicle.engine.Fuel;
-import com.example.stand.vehicle.engine.Motor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +15,8 @@ public class VehicleController {
     private final VehicleService service;
 
     // Default vehicle's settings
-    private static final String VEHICLE_REGISTRATION = "JN1AY1AP5BM181741";
-    private static final String VEHICLE_NUM = "10"; // Total vehicles
+    public static final String VEHICLE_REGISTRATION = "JN1AY1AP5BM181741";
+    public static final String VEHICLE_NUM = "10"; // Total vehicles
 
     @Autowired
     public VehicleController(VehicleService service) {
@@ -47,14 +45,14 @@ public class VehicleController {
     @GetMapping(path = "/motor/list")
     public ResponseEntity<List<Vehicle>> getVehiclesByMotor(@RequestParam(defaultValue = "CAR") String motor,
                                                             @RequestParam(defaultValue = VEHICLE_NUM) String limit) {
-        final var vehicles = service.getVehiclesByMotor(Motor.valueOf(motor), limit);
+        final var vehicles = service.getVehiclesByMotor(motor, limit);
         return ResponseEntity.ok(vehicles);
     }
 
     @GetMapping(path = "/fuel/list")
     public ResponseEntity<List<Vehicle>> getVehiclesByFuel(@RequestParam(defaultValue = "Gasoline") String fuel,
                                                            @RequestParam(defaultValue = VEHICLE_NUM) String limit) {
-        final var vehicles = service.getVehiclesByFuel(Fuel.valueOf(fuel), limit);
+        final var vehicles = service.getVehiclesByFuel(fuel, limit);
         return ResponseEntity.ok(vehicles);
     }
 
