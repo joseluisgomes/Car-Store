@@ -11,7 +11,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping(path = "/vehicle")
-public class VehicleController {
+public class  VehicleController {
     private final VehicleService service;
 
     // Default vehicle's settings

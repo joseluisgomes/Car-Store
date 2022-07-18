@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,16 +19,16 @@ public class EmployeeController {
         this.service = service;
     }
 
-    @GetMapping(path = "/list/{limit}")
+    @GetMapping(path = "/list")
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    public ResponseEntity<List<Employee>> getAllEmployees(@PathVariable long limit) {
+    public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(defaultValue = "10") String limit) {
         final var employees = service.getAllEmployees(limit);
         return ResponseEntity.ok(employees);
     }
 
-    @GetMapping(path = "/get/{id}")
+    @GetMapping(path = "/get")
     @Secured("ROLE_ADMIN")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id) {
+    public ResponseEntity<Employee> getEmployeeById(@RequestParam(defaultValue = "1") String id) {
         return ResponseEntity.ok(service.getEmployeeById(id));
     }
 }

@@ -17,18 +17,18 @@ public class EmployeeService {
         this.repository = repository;
     }
 
-    public List<Employee> getAllEmployees(long limit) {
+    public List<Employee> getAllEmployees(String limit) {
         log.info("Fetching all employees");
         final List<Employee> employees = new ArrayList<>();
         repository.findAll().forEach(employee -> employees.add(employee.clone()));
         return employees.stream()
-                .limit(limit)
+                .limit(Long.parseLong(limit))
                 .toList();
     }
 
-    public Employee getEmployeeById(long id) {
+    public Employee getEmployeeById(String id) {
         log.info("Fetching employee whose id is {}", id);
-        return repository.findById(id)
+        return repository.findById(Long.parseLong(id))
                 .orElseThrow()
                 .clone();
     }

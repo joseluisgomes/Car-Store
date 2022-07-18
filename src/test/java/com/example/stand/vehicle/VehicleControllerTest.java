@@ -62,8 +62,7 @@ class VehicleControllerTest {
         mockMvc.perform(get("/vehicle/brand/list"))
                 .andDo(print())
                 .andExpect(status().isOk());
-        verify(vehicleService)
-                .getVehiclesByBrandAndModel("Nissan", "Juke", VEHICLE_NUM);
+        verify(vehicleService).getVehiclesByBrandAndModel("Nissan", "Juke", VEHICLE_NUM);
     }
 
     @Test
@@ -87,7 +86,7 @@ class VehicleControllerTest {
     @Test
     @DisplayName("Should register the given vehicle")
     void shouldRegisterNewVehicle() throws Exception {
-        mockMvc.perform(post("/vehicle/registration", vehicle).with(csrf()))
+        mockMvc.perform(post("/vehicle/register", vehicle).with(csrf()))
                 .andDo(print())
                 .andExpect(status().isCreated());
         verify(vehicleService).registerNewVehicle(vehicle);
@@ -95,7 +94,8 @@ class VehicleControllerTest {
 
     @Test
     void shouldUpdateVehicle() throws Exception {
-        mockMvc.perform(put("/vehicle/update", VEHICLE_REGISTRATION, "Pink").with(csrf()))
+        mockMvc.perform(put("/vehicle/update", VEHICLE_REGISTRATION, "Pink")
+                        .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isAccepted());
         verify(vehicleService).updateVehicle(VEHICLE_REGISTRATION, "Black");
