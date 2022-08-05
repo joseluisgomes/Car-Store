@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestApiService } from '../rest-api.service';
+import { LoginService } from '../login-service.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +8,18 @@ import { RestApiService } from '../rest-api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
-  message: any;
+  user: User = new User();
 
-  constructor(private service: RestApiService) { }
+  constructor(private loginService: LoginService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
-  performLogin(): void {
-    let response = this.service.login(this.username, this.password);
-    response.subscribe(data => { console.log(data) });
+  userLogin() {
+    console.log(this.user);
+    this.loginService.logIn(this.user).subscribe(
+      data => { alert("Login Successfully") },
+      error => { alert("Sorry, please enter your credentials again") }      
+    );
   }
 }

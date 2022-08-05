@@ -1,18 +1,14 @@
-<div class="background-wrap">
-    <div class="background"></div>
-  </div>
- 
-  <form id="accesspanel" action="">
-    <h1 id="litheader">Welcome</h1>
-    <div class="inset">
-      <p>
-        <input type="text" name="username" [(ngModel)]="username" id="email" placeholder="email">
-      </p>
-      <p>
-        <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="password">
-      </p>
-    </div>
-    <p class="p-container">
-      <input type="submit" name="Login" id="go" value="Login" (click)="performLogin()">
-    </p>
-  </form>
+<div class="container col-md-6">
+    <h1 style="color: blue">User Login</h1>
+    <form (ngSubmit)="userLogin()">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" [(ngModel)]="user.username" class="form-control" id="username" name="username" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+            <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password">
+        </div>     
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
