@@ -11,6 +11,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping(path = "/vehicle")
+@CrossOrigin(origins = "http://localhost:4200")
 public class  VehicleController {
     private final VehicleService service;
 
