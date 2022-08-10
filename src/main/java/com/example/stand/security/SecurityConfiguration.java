@@ -2,6 +2,7 @@ package com.example.stand.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,21 +14,27 @@ import javax.sql.DataSource;
 
 import static com.example.stand.employee.office.Role.ADMINISTRATOR;
 import static com.example.stand.employee.office.Role.SECRETARY;
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       http
-               .formLogin()
-                   .loginPage("/login")
-                   .permitAll()
-               .and()
-               .authorizeRequests()
-               .antMatchers("/", "/css/*", "/js/*").permitAll()
-               .antMatchers("/employee/**", "/vehicle/**")
-                    .hasAnyRole(ADMINISTRATOR.getRole(), SECRETARY.getRole());
+        http
+                .csrf().disable()
+                .authorizeHttpRequests(authorize -> {
+                    authorize.antMatchers("/", "/css/*", "/js/*").permitAll();
+                    authorize.antMatchers("/employee/**", "/vehicle/**")
+                            .hasAnyRole(ADMINISTRATOR.getRole(), SECRETARY.getRole());
+                })
+                .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and()
+                .logout()
+                    .logoutSuccessUrl("/login")
+                    .clearAuthentication(true);
         return http.build();
     }
 
