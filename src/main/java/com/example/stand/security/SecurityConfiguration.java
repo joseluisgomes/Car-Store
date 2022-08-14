@@ -22,18 +22,16 @@ public class SecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeHttpRequests(authorize -> {
-                    authorize.antMatchers("/", "/css/*", "/js/*")
+                    authorize.antMatchers("/", "/login", "/css/*", "/js/*")
                             .permitAll();
                     authorize.antMatchers("/employee/**", "/vehicle/**")
                             .hasAnyRole(ADMINISTRATOR.getRole(), SECRETARY.getRole());
                 })
                 .formLogin()
                     .loginPage("/login")
-                    .permitAll()
                 .and()
                 .logout()
-                    .logoutSuccessUrl("/login")
-                    .clearAuthentication(true);
+                    .logoutSuccessUrl("/login");
         return http.build();
     }
 

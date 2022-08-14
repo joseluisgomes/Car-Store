@@ -1,33 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Please sign in</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="icon" href="images/car.png">
-    <style>
-        body { background-color: #3e3e3e; color:  white;}
-    </style>
+  <meta charset="UTF-8">
+  <title>Stand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="images/car.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+  <script data-dapp-detection="">!function () { let e = !1; function n() { if (!e) { const n = document.createElement("meta"); n.name = "dapp-detected", document.head.appendChild(n), e = !0 } } if (window.hasOwnProperty("ethereum")) { if (window.__disableDappDetectionInsertion = !0, void 0 === window.ethereum) return; n() } else { var t = window.ethereum; Object.defineProperty(window, "ethereum", { configurable: !0, enumerable: !1, set: function (e) { window.__disableDappDetectionInsertion || n(), t = e }, get: function () { if (!window.__disableDappDetectionInsertion) { const e = arguments.callee; e && e.caller && e.caller.toString && -1 !== e.caller.toString().indexOf("getOwnPropertyNames") || n() } return t } }) } }();
+  </script>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #3e3e3e;
+      color: white;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .input-container {
+      display: -ms-flexbox;
+      /* IE10 */
+      display: flex;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .icon {
+      padding: 10px;
+      background: dodgerblue;
+      color: white;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border: 2px solid dodgerblue;
+    }
+
+    /* Set a style for the submit button */
+    .btn {
+      background-color: dodgerblue;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+      font-size: medium;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      opacity: 1;
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
-    <form class="form-signin" method="post" action="/login">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <p>
-            <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-        </p>
-        <p>
-            <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-        </p>
-        <input name="_csrf" type="hidden" value="248cc3c4-ff45-4d25-8a29-24c68ebaba31">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-</div>
+  <form class="form-signin" method="post" action="/login" style="max-width:500px;margin:auto">
+    <h2 class="form-signin-heading" align="center">Welcome</h2>
+    <p align="center">Please enter your email and password</p>
+    <div class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" placeholder="Email" name="email">
+    </div>
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" placeholder="Password" name="password">
+    </div>
+    <button type="submit" class="btn">Login</button>
+  </form>
 </body>
+
 </html>
