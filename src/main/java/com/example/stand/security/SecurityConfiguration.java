@@ -24,11 +24,12 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> {
                     authorize.antMatchers("/", "/login", "/css/*", "/js/*")
                             .permitAll();
-                    authorize.antMatchers("/employee/**", "/vehicle/**")
+                    authorize.antMatchers("/employee/**", "/vehicle/**", "/table")
                             .hasAnyRole(ADMINISTRATOR.getRole(), SECRETARY.getRole());
                 })
                 .formLogin()
                     .loginPage("/login")
+                    .defaultSuccessUrl("/data", true)
                 .and()
                 .logout()
                     .logoutSuccessUrl("/login");
