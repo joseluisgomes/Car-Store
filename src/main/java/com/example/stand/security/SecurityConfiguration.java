@@ -24,7 +24,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> {
                     authorize.antMatchers("/", "/login", "/css/*", "/js/*")
                             .permitAll();
-                    authorize.antMatchers("/employee/**", "/vehicle/**", "/table")
+                    authorize.antMatchers("/employee/**", "/vehicle/**", "/data", "/index")
                             .hasAnyRole(ADMINISTRATOR.getRole(), SECRETARY.getRole());
                 })
                 .formLogin()

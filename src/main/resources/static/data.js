@@ -10,14 +10,14 @@ function main() {
 }
 
 function renderDataInTheTable(data) {
-  const arrayTitle = ['ID', 'Brand', 'Model', 'Registration', 'Seats', 'Color', 'Motor', 'Fuel', 'Fabric Date'];
+  const carAttributes = ['ID', 'Brand', 'Model', 'Registration', 'Seats', 'Color', 'Motor', 'Fuel', 'Fabric Date'];
   const mytable = document.getElementById("data-table");
   mytable.innerHTML = '';
 
   let initRow = document.createElement("tr");
   initRow.style = "width:100%";
 
-  for (let index = 0; index < arrayTitle.length; index++) {
+  for (let index = 0; index < carAttributes.length; index++) {
     let cell = document.createElement("th");
 
     switch (index) {
@@ -27,19 +27,20 @@ function renderDataInTheTable(data) {
       default: cell.style = "width:6%";
     }
 
-    cell.innerText = arrayTitle[index];
+    cell.innerText = carAttributes[index];
     initRow.appendChild(cell);
   }
 
   mytable.appendChild(initRow);
 
-  data.forEach(sample => {
+  data.forEach(car => {
     let newRow = document.createElement("tr");
-    Object.values(sample).forEach((value) => {
-      let cell = document.createElement("td");
-      cell.innerText = value;
-      newRow.appendChild(cell);
-    })
+    Object.values(car).forEach(value => { 
+        let cell = document.createElement("td");
+        cell.innerText = value;
+        newRow.appendChild(cell);
+      }
+    )
     mytable.appendChild(newRow);
   });
 }

@@ -1,7 +1,7 @@
 setInterval(main, 1000);
 
 function main() {
-  fetch('/vehicle/list')
+  fetch('/employee/list')
     .then(function (response) {
       return response.json();
     }).then(function (apiJsonData) {
@@ -10,34 +10,32 @@ function main() {
 }
 
 function renderDataInTheTable(data) {
-  const carAttributes = ['ID', 'Brand', 'Model', 'Registration', 'Seats', 'Color', 'Motor', 'Fuel', 'Fabric Date'];
+  const employeeAttributes = ['ID', 'Name', 'Email', 'Role', 'Phone', 'Profile'];
   const mytable = document.getElementById("data-table");
   mytable.innerHTML = '';
 
   let initRow = document.createElement("tr");
   initRow.style = "width:100%";
 
-  for (let index = 0; index < carAttributes.length; index++) {
+  for (let index = 0; index < employeeAttributes.length; index++) {
     let cell = document.createElement("th");
 
     switch (index) {
       case '0':
-      case '1':
-      case '4': cell.style = "width:12%"; break;
+      case '1': 
+      case '3': cell.style = "width:12%"; break;
       default: cell.style = "width:6%";
     }
-
-    cell.innerText = carAttributes[index];
+    cell.innerText = employeeAttributes[index];
     initRow.appendChild(cell);
   }
-
   mytable.appendChild(initRow);
 
-  data.forEach(car => {
+  data.forEach(employee => {
     let newRow = document.createElement("tr");
-    Object.values(car).forEach(value => { 
+    Object.values(employee).forEach(attribute => { 
         let cell = document.createElement("td");
-        cell.innerText = value;
+        cell.innerText = attribute;
         newRow.appendChild(cell);
       }
     )

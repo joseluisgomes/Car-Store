@@ -12,4 +12,7 @@ public class TemplateController {
 
     @GetMapping("data")
     public String getDataView() { return "data"; }
+
+    @GetMapping("index")
+    public String getIndexView() { return "index"; }
 }
