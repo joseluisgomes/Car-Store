@@ -23,8 +23,9 @@ The figure 1 shows the entity-relationship diagram of this project. From the ana
 </p>
 <div align = "center">Figure 1 - Entity Relationship Diagram.</div>
 <br />
-Through the above diagram, It is possible to map each entity into a _Java_ Class. The entity's attributes correspond to the state of the object. The figure 2 reflects the mentioned mapping.
+Through the above diagram, It is possible to map each entity into a _Java_ Class. The entity's attributes correspond to the state of the object.
 <br />
+ The figure 2 reflects the mentioned mapping.
 <div align="center">
 
 | Entity   | Class         |
