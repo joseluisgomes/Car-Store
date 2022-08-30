@@ -22,19 +22,25 @@ The figure 1 shows the entity-relationship diagram of this project. From the ana
     <img src="https://user-images.githubusercontent.com/70901488/187467998-703b5d8d-23b2-4fd2-89f1-26ccbc16f65d.png">
 </p>
 <div align = "center">Figure 1 - Entity Relationship Diagram.</div>
-<br />
-Through the above diagram, It is possible to map each entity into a _Java_ Class. The entity's attributes correspond to the state of the object.
-<br />
- The figure 2 reflects the mentioned mapping.
-<br />
+
+Through the above diagram, It is possible to map each entity into a _Java_ Class. The entity's attributes correspond to the state of the object. The figure 2 reflects the mentioned mapping.
 
 <div align="center">
 
-| Entity   | Class           |
-|----------|-----------------|
-| Employee | `Employee.java` |
-| User     | `User.java`     |
-| Vehicle  | `Vehicle.java`  |
+|   Entity   |       Class       |
+|:----------:|:-----------------:|
+|  Employee  |  `Employee.java`  |
+|    User    |    `User.java`    |
+|  Vehicle   |  `Vehicle.java`   |
 
 </div>
 <div align = "center">Figure 2 - Entity-to-Class table.</div>
+
+Still inside the entity's discussion, some attributes need a special, an adequate treatment such as _Role, Fuel_ and _Motor_, which are attributes from _Employee_ and _Vehicle_ entities. Basically, the well suited solution is converting the mentioned attributes into _Java_ Enums.
+<br />
+The figure 3 demonstrates the relation, connection between the cited entities and attributes. 
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/70901488/187542260-161fd005-1cd2-4aa4-89e0-12dbb40d7559.png">
+</p>
+<div align = "center">Figure 3 - Class Diagram.</div>
