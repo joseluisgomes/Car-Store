@@ -16,6 +16,20 @@ An application that displays the content of a certain car store, such as cars an
 
 ## Development of the project
 
-The figure 1 shows the entity-relationship diagram of this project. From the analysis of this figure, We can conclue that this application relies on 4 entities: _Employee, User, Vehicle_ and _Authority_.
+The figure 1 shows the entity-relationship diagram of this project. From the analysis of this figure, We can conclude that this application relies on 4 entities: _Employee, User, Vehicle_ and _Authority_.
 
-![entity_diagram drawio](https://user-images.githubusercontent.com/70901488/186705079-7ffea585-4cf7-4f3f-80f7-1a2e94234552.png)
+![diagram](https://user-images.githubusercontent.com/70901488/187467998-703b5d8d-23b2-4fd2-89f1-26ccbc16f65d.png)
+<div align = "center">Figure 1 - Entity Relationship Diagram.</div>
+
+Through the above diagram, It is possible to map each entity into a _Java_ Class. The entity's attributes correspond to the state of the object. The figure 2 reflects the mentioned mapping.
+
+<div align="center">
+
+| Entity   | Class         |
+|----------|---------------|
+| Employee | Employee.java |
+| User     | User.java     |
+| Vehicle  | Vehicle.java  |
+
+</div>
+<div align = "center">Figure 2 - Entity-to-Class table.</div>
