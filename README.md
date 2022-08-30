@@ -28,11 +28,11 @@ Through the above diagram, It is possible to map each entity into a _Java_ Class
  The figure 2 reflects the mentioned mapping.
 <div align="center">
 
-| Entity   | Class         |
-|----------|---------------|
-| Employee | Employee.java |
-| User     | User.java     |
-| Vehicle  | Vehicle.java  |
+| Entity   | Class           |
+|----------|-----------------|
+| Employee | `Employee.java` |
+| User     | `User.java`     |
+| Vehicle  | `Vehicle.java`  |
 
 </div>
 <div align = "center">Figure 2 - Entity-to-Class table.</div>
