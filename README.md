@@ -45,6 +45,13 @@ The figure 3 demonstrates the connection between the cited entities and their at
 </p>
 <div align = "center">Figure 3 - Class Diagram.</div>
 
-## Heartwood of the Website 
+## The heartwood of the Website
 
-As mentioned in the index, the web service/website performs different tasks according to the user's operations. It's noteworthy to mention that this website requires a login, only the users/employees that are registered on the database can perform it. 
+As mentioned in the index, the web service/website performs different tasks according to the user's operations. The website is equipped with a login page, only available to the users registered on the database.
+<br />
+The figure 4 shows the website's login page.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/70901488/187778578-66f8ba9e-08ce-4be4-a684-691d7e9b7c4d.png">
+</p>
+<div align = "center">Figure 4 - Login page.</div>
