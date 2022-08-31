@@ -38,9 +38,13 @@ Through the above diagram, It is possible to map each entity into a _Java_ Class
 
 Still inside the entity's discussion, some attributes need a special, an adequate treatment such as _Role, Fuel_ and _Motor_, which are attributes from _Employee_ and _Vehicle_ entities. Basically, the well suited solution is converting the mentioned attributes into _Java_ Enums.
 <br />
-The figure 3 demonstrates the relation, connection between the cited entities and attributes. 
+The figure 3 demonstrates the connection between the cited entities and their attributes.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/70901488/187542260-161fd005-1cd2-4aa4-89e0-12dbb40d7559.png">
 </p>
 <div align = "center">Figure 3 - Class Diagram.</div>
+
+## Heartwood of the Website 
+
+As mentioned in the index, the web service/website performs different tasks according to the user's operations. It's noteworthy to mention that this website requires a login, only the users/employees that are registered on the database can perform it. 
