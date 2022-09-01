@@ -49,21 +49,38 @@ The figure 3 demonstrates the connection between the cited entities and their at
 
 ### The interaction between the different layers of the service manager
 
-The figure 4 reflects the behaviour, the interacitions between 
-
+The figure 4 reflects the behaviour, the interactions between the different layers that form the structure, core of the website. 
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/70901488/187880898-f34a5e74-b126-4772-a77e-697b2429aa08.png">
+    <img src="https://user-images.githubusercontent.com/70901488/187938498-46989f97-2e23-4594-86a9-c91854161015.png">
 </p>
 <div align = "center">Figure 4 - Interaction between the layers.</div>
 
 ### Login page
 
-As mentioned in the index, the web service/website performs different tasks according to the user's operations. The website is equipped with a login page, only available to the users registered on the database.
+As mentioned in the _index_, the web service/website performs different tasks according to the user's operations. The website is equipped with a login page, only available to the users registered on the **database**.
 <br />
-The figure 4 shows the website's login page.
+The figure 5 shows the website's login page.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/70901488/187778578-66f8ba9e-08ce-4be4-a684-691d7e9b7c4d.png">
 </p>
 <div align = "center">Figure 5 - Login page.</div>
+
+### Index page
+
+After logging in, the _index_ page presents a table with the vehicles available on the store. This operation is possible due to the relationship and the share between the different layers, as illustrated by the figure 6.  
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/70901488/187941370-634d16ad-2d15-4702-a6c9-1a876a1bff47.png">
+</p>
+<div align = "center">Figure 6 - Index page.</div>
+
+### Data page
+
+As similar to the _index_ page, the _data_ page presents a table with the employees of the store.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/70901488/187946491-af17c720-6773-461b-935b-910d20625798.png">
+</p>
+<div align = "center">Figure 7 - Data page.</div>
