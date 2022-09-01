@@ -47,6 +47,18 @@ The figure 3 demonstrates the connection between the cited entities and their at
 
 ## The heartwood of the Website
 
+### The interaction between the different layers of the service manager
+
+The figure 4 reflects the behaviour, the interacitions between 
+
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/70901488/187880898-f34a5e74-b126-4772-a77e-697b2429aa08.png">
+</p>
+<div align = "center">Figure 4 - Interaction between the layers.</div>
+
+### Login page
+
 As mentioned in the index, the web service/website performs different tasks according to the user's operations. The website is equipped with a login page, only available to the users registered on the database.
 <br />
 The figure 4 shows the website's login page.
@@ -54,4 +66,4 @@ The figure 4 shows the website's login page.
 <p align="center">
     <img src="https://user-images.githubusercontent.com/70901488/187778578-66f8ba9e-08ce-4be4-a684-691d7e9b7c4d.png">
 </p>
-<div align = "center">Figure 4 - Login page.</div>
+<div align = "center">Figure 5 - Login page.</div>
